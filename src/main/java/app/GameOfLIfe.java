@@ -51,7 +51,7 @@ public class GameOfLIfe {
                         newVersion.setDead(i, j);
                     } else if (counted == 2 || counted == 3) {
                         // do nothing
-                    }else if (counted > 3){
+                    }else {
                         newVersion.setDead(i, j);
                     }
                 }else {

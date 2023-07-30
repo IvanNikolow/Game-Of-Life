@@ -8,29 +8,29 @@ import java.awt.*;
 
 public class ButtonPanel extends AbstractButtonPanel{
 
-    private JButton pressButton, resetButton, startButton, stopButton, newPattern, clearButton;
+//    private JButton pressButton, resetButton, startButton, stopButton, newPattern, clearButton;
 
     public ButtonPanel(GameOfLIfe gOL, GridPanel theGrid) {
         initGameOfLifeAndGridPanel(gOL, theGrid);
         setLayout(new GridLayout(4, 4));
 //        setMinimumSize(new Dimension(200, 200));
 
-        pressButton = new JButton("Step!");
+        JButton pressButton = new JButton("Step!");
         pressButton.addActionListener(this::stepAction);
 
-        resetButton = new JButton("Reset!");
+        JButton resetButton = new JButton("Reset!");
         resetButton.addActionListener(this::resetAction);
 
-        startButton = new JButton("Start!");
+        JButton startButton = new JButton("Start!");
         startButton.addActionListener(this::startAction);
 
-        stopButton = new JButton("Stop!");
+        JButton stopButton = new JButton("Stop!");
         stopButton.addActionListener(this::stopAction);
 
-        newPattern = new JButton("Pattern!");
+        JButton newPattern = new JButton("Pattern!");
         newPattern.addActionListener(this::newPatternAction);
 
-        clearButton = new JButton("Clear!");
+        JButton clearButton = new JButton("Clear!");
         clearButton.addActionListener(this::clearAction);
 
         add(pressButton);
