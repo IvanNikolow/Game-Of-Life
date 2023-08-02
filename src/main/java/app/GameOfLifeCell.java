@@ -5,9 +5,6 @@ import enums.State;
 public class GameOfLifeCell {
     private State state;
 
-    public GameOfLifeCell() {
-    }
-
     public GameOfLifeCell(State state) {
         this.state = state;
     }

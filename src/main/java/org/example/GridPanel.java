@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GridPanel extends JPanel {
-    private GameOfLIfe gameOfLIfe;
+    private final GameOfLIfe gameOfLIfe;
 
     public GridPanel(GameOfLIfe gOL) {
         gameOfLIfe = gOL;
