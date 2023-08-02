@@ -23,7 +23,7 @@ public class GridPanel extends JPanel {
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if (gameOfLIfe.isAlive(row, col)) {
+                        if (!gameOfLIfe.isAlive(row, col)) {
                             button.setBackground(Color.WHITE);
                             gameOfLIfe.setAlive(row, col);
                         }else {

@@ -122,7 +122,7 @@ public class GameOfLIfe {
         this.clear();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (resetVersion.isAlive(i, j)){
+                if (!resetVersion.isAlive(i, j)){
                     this.setAlive(i, j);
                 }else {
                     this.setDead(i, j);
