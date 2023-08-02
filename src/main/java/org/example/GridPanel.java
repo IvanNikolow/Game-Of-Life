@@ -23,10 +23,9 @@ public class GridPanel extends JPanel {
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if (gameOfLIfe.isAlive(row, col) == 0) {
+                        if (gameOfLIfe.isAlive(row, col)) {
                             button.setBackground(Color.WHITE);
                             gameOfLIfe.setAlive(row, col);
-//                            gameOfLIfe.init();
                         }else {
                             button.setBackground(Color.BLACK);
                             gameOfLIfe.setDead(row, col);
@@ -34,7 +33,7 @@ public class GridPanel extends JPanel {
                     }
                 });
 
-                if (gameOfLIfe.isAlive(row, col) == 1){
+                if (gameOfLIfe.isAlive(row, col)){
                     button.setBackground(Color.WHITE);
                 }else {
                     button.setBackground(Color.BLACK);
@@ -77,7 +76,7 @@ public class GridPanel extends JPanel {
         int count = 0;
         for (int i = 0; i < gameOfLIfe.getRows(); i++) {
             for (int j = 0; j < gameOfLIfe.getCols(); j++) {
-                if (gameOfLIfe.isAlive(i, j) == 1){
+                if (gameOfLIfe.isAlive(i, j)){
                     getComponent(count).setBackground(Color.WHITE);
                 }else {
                     getComponent(count).setBackground(Color.BLACK);

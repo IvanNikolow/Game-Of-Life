@@ -1,17 +1,19 @@
 package app;
 
+import enums.State;
+
 public class GameOfLIfe {
     int rows;
     int cols;
-    int[][] grid;
+    GameOfLifeCell[][] cellGrid;
     GameOfLIfe newVersion;
     GameOfLIfe resetVersion;
 
     public GameOfLIfe(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
-        grid = new int[rows][cols];
-        init();
+        cellGrid = new GameOfLifeCell[rows][cols];
+        initCellGrid();
     }
 
     public int getRows() {
@@ -23,30 +25,23 @@ public class GameOfLIfe {
     }
 
     public void setAlive(int row, int col){
-        grid[row][col] = 1;
+        cellGrid[row][col].setState(State.ALIVE);
     }
 
     public void setDead(int row, int col){
-        grid[row][col] = 0;
+        cellGrid[row][col].setState(State.DEAD);
     }
 
-    public int isAlive(int row, int col){
-        if (row < 0 || row >= rows){
-            return 0;
-        }else if (col < 0 || col >= cols){
-            return 0;
-        }
-        return grid[row][col];
+    public boolean isAlive(int row, int col) {
+        return cellGrid[row][col].isAlive();
     }
-
-
 
     public GameOfLIfe step() {
         newVersion = this;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 int counted = countAliveNeighbours(i, j);
-                if (isAlive(i, j) == 1) {
+                if (isAlive(i, j)) {
                     if (counted < 2){
                         newVersion.setDead(i, j);
                     } else if (counted == 2 || counted == 3) {
@@ -64,22 +59,32 @@ public class GameOfLIfe {
         return newVersion;
     }
 
-        public int countAliveNeighbours (int row, int col){
-            int counter = 0;
+    public int countAliveNeighbours (int row, int col){
+        int counter = 0;
 
-            counter += isAlive(row - 1, col - 1);
-            counter += isAlive(row, col - 1);
-            counter += isAlive(row + 1, col - 1);
+        counter += getCellValue(row - 1, col - 1);
+        counter += getCellValue(row, col - 1);
+        counter += getCellValue(row + 1, col - 1);
 
-            counter += isAlive(row - 1, col);
-            counter += isAlive(row + 1, col);
+        counter += getCellValue(row - 1, col);
+        counter += getCellValue(row + 1, col);
 
-            counter += isAlive(row - 1, col + 1);
-            counter += isAlive(row, col + 1);
-            counter += isAlive(row + 1, col + 1);
+        counter += getCellValue(row - 1, col + 1);
+        counter += getCellValue(row, col + 1);
+        counter += getCellValue(row + 1, col + 1);
 
-            return counter;
+        return counter;
+    }
+
+    public int getCellValue(int row, int col) {
+        if (row < 0 || row >= rows) {
+            return 0;
+        } else if (col < 0 || col >= cols) {
+            return 0;
         }
+//        return grid[row][col];
+        return cellGrid[row][col].getState().getValue();
+    }
 
     public void clear() {
         for (int i = 0; i < rows; i++) {
@@ -89,15 +94,12 @@ public class GameOfLIfe {
         }
     }
 
-    @Deprecated
-    public void init() {
+    public void initCellGrid() {
         for (int i = 0; i < rows; i++) {
             System.out.println();
             for (int j = 0; j < cols; j++) {
-                if (grid[i][j] == 0) {
-                    System.out.print("*");
-                } else if (grid[i][j] == 1) {
-                    System.out.print(".");
+                if(cellGrid[i][j] == null){
+                    cellGrid[i][j] = new GameOfLifeCell(State.DEAD);
                 }
             }
         }
@@ -107,7 +109,7 @@ public class GameOfLIfe {
         resetVersion = new GameOfLIfe(rows, cols);
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (isAlive(i, j) == 1){
+                if (!isAlive(i, j)){
                     resetVersion.setAlive(i, j);
                 }else {
                     resetVersion.setDead(i, j);
@@ -120,7 +122,7 @@ public class GameOfLIfe {
         this.clear();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (resetVersion.isAlive(i, j) == 1){
+                if (resetVersion.isAlive(i, j)){
                     this.setAlive(i, j);
                 }else {
                     this.setDead(i, j);
