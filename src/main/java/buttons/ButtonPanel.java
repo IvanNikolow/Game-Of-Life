@@ -8,12 +8,10 @@ import java.awt.*;
 
 public class ButtonPanel extends AbstractButtonPanel{
 
-//    private JButton pressButton, resetButton, startButton, stopButton, newPattern, clearButton;
 
     public ButtonPanel(GameOfLIfe gOL, GridPanel theGrid) {
-        initGameOfLifeAndGridPanel(gOL, theGrid);
-        setLayout(new GridLayout(4, 4));
-//        setMinimumSize(new Dimension(200, 200));
+        super(gOL, theGrid);
+        setLayout(new GridLayout(3, 3));
 
         JButton pressButton = new JButton("Step!");
         pressButton.addActionListener(this::stepAction);

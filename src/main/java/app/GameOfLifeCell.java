@@ -1,6 +1,6 @@
 package app;
 
-import enums.State;
+import app.enums.State;
 
 public class GameOfLifeCell {
     private State state;

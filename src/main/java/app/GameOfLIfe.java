@@ -1,6 +1,6 @@
 package app;
 
-import enums.State;
+import app.enums.State;
 
 public class GameOfLIfe {
     int rows;
@@ -82,7 +82,6 @@ public class GameOfLIfe {
         } else if (col < 0 || col >= cols) {
             return 0;
         }
-//        return grid[row][col];
         return cellGrid[row][col].getState().getValue();
     }
 

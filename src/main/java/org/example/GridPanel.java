@@ -41,6 +41,7 @@ public class GridPanel extends JPanel {
                 add(button);
             }
         }
+        //TASK
 //        this.addMouseMotionListener(new MouseMotionListener() {
 //            @Override
 //            public void mouseDragged(MouseEvent e) {
@@ -85,32 +86,4 @@ public class GridPanel extends JPanel {
             }
         }
     }
-
-//    @Override
-//    public void mouseDragged(MouseEvent e) {
-//        int count = 0;
-//        int x = e.getX();
-//        int y = e.getY();
-//        System.out.println(x);
-//        System.out.println(y);
-//        for (int i = 0; i < gameOfLIfe.rows; i++) {
-//            for (int j = 0; j < gameOfLIfe.cols; j++) {
-//                JButton theButton = (JButton) getComponent(count);
-//                if (x >= theButton.getX() && x <= theButton.getX() + theButton.getWidth() && y >= theButton.getY() && y <= theButton.getY() + theButton.getHeight()){
-//                    if (gameOfLIfe.isAlive(i, j) == 0){
-//                        theButton.setBackground(Color.WHITE);
-//                        gameOfLIfe.setAlive(i, j);
-//                        gameOfLIfe.init();
-//                    }
-//                }
-//
-//                count++;
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public void mouseMoved(MouseEvent e) {
-//        System.out.println(e.getX());
-//    }
 }

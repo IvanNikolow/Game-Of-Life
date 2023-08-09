@@ -11,24 +11,25 @@ import java.util.TimerTask;
 
 public abstract class AbstractButtonPanel extends JPanel {
     private Timer timer;
-    private GameOfLIfe gameOfLIfe;
-    private GridPanel gridPanel;
+    private final GameOfLIfe gOL;
+    private final GridPanel theGridPanel;
     private int counter = 0;
 
-    protected  void initGameOfLifeAndGridPanel(GameOfLIfe theGOL, GridPanel theGridPanel){
-        gameOfLIfe = theGOL;
-        gridPanel = theGridPanel;
+    public AbstractButtonPanel(GameOfLIfe gameOfLIfe, GridPanel gridPanel) {
+        this.gOL = gameOfLIfe;
+        this.theGridPanel = gridPanel;
     }
+
     protected void newPatternAction(ActionEvent actionEvent) {
-        gameOfLIfe.clear();
-        gridPanel.draw();
-        for (int i = 0; i < gameOfLIfe.getRows(); i++) {
-            for (int j = 0; j < gameOfLIfe.getCols(); j++) {
+        gOL.clear();
+        theGridPanel.draw();
+        for (int i = 0; i < gOL.getRows(); i++) {
+            for (int j = 0; j < gOL.getCols(); j++) {
                 Random random = new Random();
                 int randomNumber = random.nextInt(500);
                 if (randomNumber % 2 == 0){
-                    gameOfLIfe.setAlive(i, j);
-                    gridPanel.draw();
+                    gOL.setAlive(i, j);
+                    theGridPanel.draw();
                 }
             }
         }
@@ -36,26 +37,26 @@ public abstract class AbstractButtonPanel extends JPanel {
 
     protected void stepAction(ActionEvent actionEvent) {
         if (counter == 0) {
-            gameOfLIfe.savePattern();
+            gOL.savePattern();
         }
-        gameOfLIfe.step();
-        gridPanel.draw();
+        gOL.step();
+        theGridPanel.draw();
         counter++;
     }
 
     protected void clearAction(ActionEvent actionEvent) {
-        gameOfLIfe.clear();
-        gridPanel.draw();
+        gOL.clear();
+        theGridPanel.draw();
     }
 
     protected void startAction(ActionEvent actionEvent) {
-        gameOfLIfe.savePattern();
+        gOL.savePattern();
         timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                gameOfLIfe.step();
-                gridPanel.draw();
+                gOL.step();
+                theGridPanel.draw();
             }
         };
         // Schedule the task to run every second (100 milliseconds)
@@ -67,8 +68,8 @@ public abstract class AbstractButtonPanel extends JPanel {
     }
 
     public void resetAction(ActionEvent actionEvent) {
-        gameOfLIfe.revertToLastSavedVersion();
-        gridPanel.draw();
+        gOL.revertToLastSavedVersion();
+        theGridPanel.draw();
         counter = 0;
     }
 }

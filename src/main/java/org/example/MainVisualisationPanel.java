@@ -5,7 +5,7 @@ import buttons.ButtonPanel;
 
 import javax.swing.*;
 import java.awt.*;
-
+//TASK: Add descriptions
 public class MainVisualisationPanel extends JFrame{
 
 

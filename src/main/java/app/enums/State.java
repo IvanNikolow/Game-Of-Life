@@ -1,4 +1,4 @@
-package enums;
+package app.enums;
 
 public enum State {
     DEAD(0),
